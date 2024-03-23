@@ -10,10 +10,12 @@ console.log(chalk.green.inverse.bold('green is the best color!'))
 yargs.command({
     command: 'list',
     descript: 'list all command',
-    handler: function () {
-        console.log('list notes!')
+    handler() {
+        notes.listNotes()
     }
 })
+
+
 
 yargs.command({
     command: 'read',
