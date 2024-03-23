@@ -6,7 +6,16 @@ const message = function (notes){
 
 
 const addNotes = function (title, body){
+    const notes = loadNotes()
+    const duplicateNote = notes.find((note) => note.title === title)
 
+    if (!duplicateNote){
+        notes.push({
+            title: title,
+            body: body
+        })
+        saveNotes(notes)
+    }
 }
 
 const getNotes = function (title, body){
@@ -49,10 +58,24 @@ const loadNotes = function () {
     }
 }
 
+const readNotes = (title) => {
+    const notes = loadNotes()
+
+    const findNote = notes.find((note) => {
+        return note.title === title})
+    if (findNote){
+        console.log(findNote.body)
+    }else {
+        console.log('not found')
+    }
+
+}
+
 
 module.exports = {
     getNotes: getNotes,
     addNotes: addNotes,
     remove: removeNotes,
+    readNotes: readNotes,
     listNotes: listNotes
 }

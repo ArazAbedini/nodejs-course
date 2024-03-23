@@ -27,15 +27,15 @@ yargs.command({
             type: 'string'
         }
     },
-    handler: function (argv) {
-        console.log(argv.title)
+    handler(argv) {
+        notes.readNotes(argv.title)
     }
 })
 
 yargs.command({
     command: 'remove',
-    descibe: 'remove existing json',
-    biulder: {
+    describe: 'remove existing json',
+    builder: {
         title: {
             describe: 'note title',
             demandOption: true,
@@ -46,6 +46,27 @@ yargs.command({
         notes.remove(argv.title)
     }
     
+})
+
+yargs.command({
+    command: 'add',
+    describe: 'add notes',
+    builder: {
+        title: {
+            describe: 'note title',
+            demandOption: true,
+            type: 'string'
+        },
+        body: {
+            describe: 'note body',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler(argv) {
+        notes.addNotes(argv.title, argv.body)
+    }
+
 })
 yargs.parse()
 // const add = require('./utils.js')
