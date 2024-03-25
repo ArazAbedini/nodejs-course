@@ -1,13 +1,9 @@
-console.log('Legen,')
+const request = require('request')
+
+const url = 'http://api.weatherapi.com/v1/current.json?key=82992e45ce6749e3a24154608242503&q=Paris'
 
 
-setTimeout(() => {
-    console.log('...dary')
-}, 5000)
-
-setTimeout(() => {
-    console.log('legendary!')
-}, 6000)
-
-
-console.log('wait for it...')
+request({ url: url}, (error, response) => {
+    const data = JSON.parse(response.body)
+    console.log(data)
+})
