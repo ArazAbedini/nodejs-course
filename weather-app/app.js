@@ -9,11 +9,11 @@ if (!city) {
     return console.log('please provide city')
 }
 
-currentWeather(city, (error, response) => {
+currentWeather(city, (error, {temp_f}) => {
     if (error) {
         return console.log(error)
     } else {
-        const far = response.temp_f
+        const far = temp_f
         temp(far, (hot, cold) => {
             if (hot) {
                 console.log(hot)
