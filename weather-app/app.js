@@ -1,9 +1,27 @@
 const request = require('request')
 const currentWeather = require('./utils/weather')
+const temp = require('./utils/temp')
 
 
-currentWeather('New York', (error, response) => {
-    console.log(error)
-    console.log(response)
+const city = process.argv[2]
+
+if (!city) {
+    return console.log('please provide city')
+}
+
+currentWeather(city, (error, response) => {
+    if (error) {
+        return console.log(error)
+    } else {
+        const far = response.temp_f
+        temp(far, (hot, cold) => {
+            if (hot) {
+                console.log(hot)
+            } else {
+                console.log(cold)
+            }
+        })
+
+    }
 })
 
