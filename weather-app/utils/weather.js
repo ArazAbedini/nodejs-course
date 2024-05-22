@@ -11,10 +11,10 @@ const weather = (city, callback) => {
     request({url: url, json: true}, (error, {body}) => {
         if (error) {
             callback('Unable to connect weather service!', undefined)
-        } else if (body.error) {
+        } else if (response.body.error) {
             callback('Unable to find!', undefined)
         } else {
-            callback(undefined, body.current)
+            callback(undefined, response.body.current)
         }
 
     })
