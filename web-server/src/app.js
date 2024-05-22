@@ -9,15 +9,24 @@ app.get('', (req, res) => {
 
 
 app.get('/help', (req, res) => {
-    res.send('Help')
+    res.send('<h1>Help</h1>')
 })
 
 app.get('/about', (req, res) => {
-    res.send('About')
+    res.send([{
+        name: 'Tony Sopranos',
+        job: 'Mob'
+        },
+        {name: 'Walter White',
+        job: 'Teacher'}
+    ])
 })
 
 app.get('/weather', (req, res) => {
-    res.send('Show Weather!')
+    res.send({
+        city: 'NewYork',
+        forecast: 'Rainy'
+    })
 })
 
 app.listen(3000, () => {
