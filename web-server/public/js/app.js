@@ -1,0 +1,1 @@
+console.log("clien side javascrpt file is load!")

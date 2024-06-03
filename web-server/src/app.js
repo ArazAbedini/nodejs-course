@@ -19,6 +19,10 @@ app.get('/weather', (req, res) => {
     })
 })
 
+app.get('/about', (req, res) => {
+    res.send()
+})
+
 app.listen(3000, () => {
     console.log('Server is up!')
 })
