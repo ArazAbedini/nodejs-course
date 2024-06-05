@@ -39,8 +39,12 @@ app.get('/help', (req, res) => {
 
 
 app.get('/weather', (req, res) => {
+    if (!req.query.city){
+        return res.send({
+            erorr: 'you have to provide city'
+        })
+    }
     res.send({
-        city: 'NewYork',
         forecast: 'Rainy'
     })
 })
