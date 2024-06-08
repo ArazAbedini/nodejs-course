@@ -1,6 +1,7 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
+const weather = require('./utils/weather')
 
 
 const app = express()
@@ -19,7 +20,7 @@ hbs.registerPartials(partialsPath)
 
 app.get('', (req, res) => {
     res.render('index', {
-        title: 'main',
+        title: 'Weather',
         name: 'me!'
     })
 })
@@ -44,8 +45,13 @@ app.get('/weather', (req, res) => {
             erorr: 'you have to provide city'
         })
     }
-    res.send({
-        forecast: 'Rainy'
+    const city = req.query.city
+    weather(city, (error, response) => {
+        if (error) {
+            return res.send(error)
+        }
+        res.send(JSON.stringify(response, null, 2))
+        
     })
 })
 
