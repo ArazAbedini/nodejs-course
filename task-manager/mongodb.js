@@ -12,9 +12,55 @@ MongoClient.connect(connectionURL, {}, (error, client) => {
 
   const db = client.db(databaseName);
 
-  db.collection('users').insertOne({
-    name: 'Araz',
-    age: 21
+
+  db.collection('tasks').deleteMany({
+    description:'task1'
+  }).then((result) => {
+    console.log(result)
+  }).catch((error) => {
+    console.log("ERROR")
   })
-  
+
+  // db.collection('tasks').updateMany({
+  //   completed: false
+  // }, {
+  //   $set: {
+  //   completed: true
+  //   }
+  // }).then((result) => {
+  //   console.log(result)
+  // }).catch((error) => {
+  //   console.log(error)
+  // })
+  // db.collection('users').insertOne({
+  //   name: 'Araz',
+  //   age: 21
+  // }, (error, result) => {
+  //   if (error)  {
+  //     return console.log('unable to insert user!')
+  //   }
+  //   console.log(result.ops)
+  // })
+  // db.collection('tasks').insertMany([
+  //   {
+  //     description:'task1',
+  //     completed: true
+  //   },
+  //   {
+  //     description:'task2',
+  //     completed: false
+  //   },
+  //   {
+  //     description:'task3',
+  //     completed: true
+  //   },
+  // ], (error, result) => {
+  //   if (error){
+  //     return console.log('unable to insert collection')
+  //   }
+  //   console.log(result.ops)
+    
+  // })
+
+
 });
