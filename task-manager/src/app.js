@@ -1,8 +1,8 @@
 const express = require('express')
-require('./src/db/mongoose')
-const Task = require('./src/models/tasks')
-const tasksRoutes = require('./src/routes/tasks')
-const userRoutes = require('./src/routes/user')
+require('./db/mongoose')
+const Task = require('./models/tasks')
+const tasksRoutes = require('./routes/tasks')
+const userRoutes = require('./routes/user')
 
 
 

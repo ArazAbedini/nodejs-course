@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "env-cmd ./config/test.env jest --watch",
-    "dev": "env-cmd ./config/dev.env nodemon index.js",
+    "test": "env-cmd -f ./config/test.env jest --watch",
+    "dev": "env-cmd -f ./config/dev.env nodemon index.js",
     "hello": "env-cmd ./config/dev.env"
   },
   "jest": {
@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^3.6.6",
