@@ -26,20 +26,43 @@ beforeEach(async () => {
 
 
 test('should signup a new user', async () => {
-    await request(app).post('/users').send({
+    const response = await request(app).post('/users').send({
         name:'Araz',
         email:'araz@gmail.com',
         password:'123456789'
     }).expect(201)
+
+
+    const user = await User.findById(response.body.user._id)
+    expect(user).not.toBeNull()
+
+    expect(response.body.user.name).toBe('Araz')
+
+
+    expect(response.body).toMatchObject({
+        user:{
+            name:'Araz',
+            email:'araz@gmail.com',
+        },
+        token: user.tokens[0].token
+
+    })
+
+    expect(user.password).not.toBe('123456789')
 })
 
 
 test('should login user', async () => {
-    await request(app).post('/users/login').send({
+    console.log(user)
+    const reponse  = await request(app).post('/users/login').send({
 
         email: user.email,
         password:user.password
     }).expect(200)
+    console.log('-------------------------------------------------------')
+    console.log(user)
+    console.log('-------------------------------------------------------')
+    expect(reponse.body.token).toBe(user.tokens[1].token)
 })
 
 
